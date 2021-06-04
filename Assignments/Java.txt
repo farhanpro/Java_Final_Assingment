@@ -1,0 +1,173 @@
+class Thread1 extends Thread
+{
+	public void run()
+	{
+		for(int i=1;i<=20;i++)
+		{
+			try
+			{
+				System.out.println(i);
+				Thread.sleep(2000);
+			}
+			catch(InterruptedException ie)
+			{
+				System.out.println(ie);
+			}	
+		}
+	}
+}
+
+class ThreadDemo
+{
+	public static void main(String args[])
+	{
+		Thread1 t1=new Thread1();
+		t1.start();
+		Thread1 t2=new Thread1();
+		t2.start();
+	}
+}
+
+
+
+
+class Thread1 extends Thread
+{
+	public void run()
+	{
+		for(int i=1;i<=20;i++)
+		{
+			try
+			{
+				System.out.println(i);
+				Thread.sleep(2000);
+			}
+			catch(InterruptedException ie)
+			{
+				System.out.println(ie);
+			}	
+		}
+	}
+}
+
+class ThreadDemo
+{
+	public static void main(String args[])
+	{
+		Thread1 t1=new Thread1();
+		t1.start();
+		Thread1 t2=new Thread1();
+		t2.start();
+	}
+}
+Tabassum Shaikh
+11:10
+class ThreadD1 implements Runnable
+{
+	public void run()
+	{
+		try
+		{
+			for(int i=1;i<=20;i++)
+			{
+				System.out.println(i);
+				Thread.sleep(1000);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+class ThreadDemo1
+{
+	public static void main(String args[])
+	{
+		ThreadD1 obj=new ThreadD1();
+		Thread t1=new Thread(obj);
+		t1.start();
+	}
+}
+Tabassum Shaikh
+11:14
+class ThreadD1 implements Runnable
+{
+	public void run()
+	{
+		try
+		{
+			for(int i=1;i<=20;i++)
+			{
+				System.out.println(i);
+				Thread.sleep(1000);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+class ThreadD2 implements Runnable
+{
+	public void run()
+	{
+		try
+		{
+			for(int i=65;i<=90;i++)
+			{
+				System.out.println((char)i);
+				Thread.sleep(1000);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+class ThreadDemo1
+{
+public static void main(String args[])
+	{
+		ThreadD1 obj=new ThreadD1();
+		Thread t1=new Thread(obj);
+		t1.start();
+
+
+		ThreadD2 obj2=new ThreadD2();
+		Thread t2=new Thread(obj2);
+		t2.start();
+	}
+}
+
+
+=================================================
+class Thread1 implements Runnable
+{
+ 	public void run()
+	{
+		try
+		{
+			for(int i=0;i<=10;i++)
+			{
+				System.out.println(i);
+				Thread.sleep(1000);
+			}
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+}
+class MainThread
+{
+	public static void main(String args[])
+	{
+		Thread1 obj=new Thread1();
+		Thread t1=new Thread(obj);
+		t1.start();
+	}
+}
+Creating a Thread by implemeting Runnable Interface

@@ -1,0 +1,283 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}}
+{\colortbl ;\red60\green64\blue67;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\widctlpar\sa160\sl252\slmult1\cf1\expndtw3\b\f0\fs24\lang16393     \fs28 Q1\fs24   \fs28 Design a screen Java to handle the mouse events such as      \par
+          MOUSE_MOVED and MOUSE_CLICK and display the \par
+         possition of the   MOUSE_CLICK in a    textField.\par
+\b0\fs24   =>\par
+import java.awt.*;\par
+import java.awt.event.*;\par
+class Que1 extends Frame\par
+\{\par
+\tab TextField statusBar;\par
+\tab Que1()\par
+\tab\{\par
+\tab\tab addMouseListener(new MouseAdapter()\par
+\tab\tab\{\tab\par
+\tab\tab\tab public void mouseClicked(MouseEvent me)\par
+\tab\tab\tab\{\tab\tab\par
+\tab\tab\tab\tab statusBar.setText("Clicked at (" +me.getX() +","+me.getY() + ")");\par
+\tab\tab\tab\tab repaint();\par
+\tab\tab\tab\}\par
+\tab\tab public void mouseEntered(MouseEvent me)\par
+\tab\tab\{\par
+\tab\tab\tab statusBar.setText("Entered at (" + me.getX() + ","+me.getY() + ")");\par
+\tab\tab\tab repaint();\par
+\tab\tab\}\par
+\tab\});\par
+\tab addWindowListener(new WindowAdapter()\par
+\tab\{\par
+\tab\tab public void windowClosing(WindowEvent me)\par
+\tab\tab\{\par
+\tab\tab\tab System.exit(0);\par
+\tab\tab\}\par
+\tab\});\par
+\tab setLayout(new FlowLayout());\par
+\tab setSize(300,300);\par
+\tab setTitle("Mouse Click Position");\par
+\tab statusBar = new TextField(30);\par
+\tab add(statusBar);\par
+\tab setVisible(true);\par
+\tab\}\par
+\tab public static void main(String args[])\par
+\tab\{\par
+\tab\tab new Que1();\par
+\tab\}\par
+\}\par
+\par
+\cf0\expndtw0\b\fs28 Q2   \cf1\expndtw3 Write a Java program that will create a frame if we try to  \par
+       close it, it should change its color and it remains visible on the \par
+      screen\par
+\par
+=>class thread implements Runnable\par
+\{\par
+    Thread th;\par
+    public thread(String title)\par
+      \{\par
+        th=new Thread(this,title);\par
+        th.start();\par
+      \}\par
+    public void run()\par
+      \{\par
+       for(int i=0;i<50;i++)\par
+       \{\par
+         System.out.println((i+1)+"ThreadName:"+Thread.currentThread().getName());\par
+      try\par
+        \{\par
+          Thread.sleep(100);\par
+       \}\par
+    catch(Exception ex)\par
+    \{\par
+    \}\par
+   \}\par
+  \} \par
+\}\par
+public class Que2\par
+\{\par
+public static void main(String args[])\par
+\{\par
+   System.out.println("ThreadName:"+Thread.currentThread().getName());\par
+    thread mt=new thread("HELLO JAVA ");\par
+ \}\par
+\}   \par
+\par
+\cf0\expndtw0 Q3   \cf1\expndtw3 Design a screen to take Personal Information(First Name, Last \par
+       Name, Address, Mobile Number, Gender, Your Interest    \par
+       (Checkbox)- Computer, Sports, Music) and display the details     \par
+       on  another screen with a click of submit button.\par
+\par
+=>\par
+\par
+\b0\fs24\par
+\par
+\par
+\b\fs28\par
+\cf0\expndtw0 Q4   \cf1\expndtw3 Write a Java program to design a screen using Swing that will \par
+      create four TextFields. First for the text, second for what to               \par
+       find, and third for replacing. Display results in the fourth \par
+      TextField. Display the count of total no. of\~replacements \par
+      made.\~ The button clear to clear the TextFields.\par
+\b0\fs24\par
+import java.awt.*;\par
+import java.awt.event.*;\par
+import javax.swing.*;\par
+public class Que4 extends JFrame implements ActionListener\par
+\{\par
+        JLabel ltext, lfind, lreplace, loccurance;\par
+        JTextArea text;\par
+        JTextField findText, replaceText, occurrenceText;\par
+        JButton find, replace, clear;\par
+        JPanel pan1,pan2;\par
+        int occurrences=0,i=0;\par
+        Que4()\par
+        \{\par
+                            ltext= new JLabel("Enter a Text : ");\par
+                  lfind = new JLabel("Text To Find : ");\par
+           lreplace = new JLabel("Text To Replace : ");\par
+                  loccurance = new JLabel("No.Of Occurrences : ");\par
+                text = new JTextArea(1,20);\par
+                findText = new JTextField(30);\par
+                replaceText = new JTextField(30);\par
+                occurrenceText = new JTextField(30);\par
+                pan1 = new JPanel();\par
+                pan1.setLayout(new GridLayout(6,3));\par
+                pan1.add(ltext);\par
+                pan1.add(text);\par
+                pan1.add(lfind);\par
+                pan1.add(findText);\par
+                pan1.add(lreplace);\par
+                pan1.add(replaceText);\par
+                pan1.add(loccurance);\par
+                pan1.add(occurrenceText);\par
+                find = new JButton("Find");\par
+                replace = new JButton("Replace");\par
+                clear= new JButton("Clear");\par
+                find.addActionListener(this);\par
+                replace.addActionListener(this);\par
+                clear.addActionListener(this);\par
+                pan2 = new JPanel();\par
+                pan2.setLayout(new FlowLayout());\par
+                pan2.add(find);\par
+                pan2.add(replace);\par
+                pan2.add(clear);\par
+                               add(pan1,"Center");\par
+                add(pan2,"South");\par
+                setTitle("Find And Replace");\par
+                setSize(400, 250);\par
+                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\par
+                setVisible(true);\par
+        \}\par
+              public void actionPerformed(ActionEvent ae)\par
+        \{\par
+                               if(ae.getSource() == find)\par
+                \{\par
+                       String s = text.getText();\par
+                        String f = findText.getText();\par
+                        i = s.indexOf(f);\par
+                         if(i != -1)\par
+                        \{\par
+                               occurrences++;\par
+                               occurrenceText.setText(Integer.toString(occurrences));\par
+                                text.select(i,i+f.length());\par
+\par
+                                text.requestFocus();\par
+                                                \}\par
+                \}\par
+                if(ae.getSource() == replace)\par
+                \{\par
+                        if(text.getSelectedText().length()!=0)\par
+                        \{\par
+                                String r = replaceText.getText();\par
+                                text.replaceSelection(r);\par
+                        \}\par
+                \}\par
+                if(ae.getSource() == clear)\par
+                \{\par
+                 text.setText("");\par
+                 findText.setText("");\par
+                 replaceText.setText("");\par
+                 occurrenceText.setText("");\par
+                \}\par
+         \}      \par
+         public static void main(String[] args)\par
+         \{\par
+            new Que4();\par
+         \}\par
+\}\par
+\b\fs28\par
+\cf0\expndtw0 Q5    \cf1\expndtw3 Write a Java program to design a screen using Awt that will \par
+       take a user name and password. If the user name and password \par
+      are not the same, raise an Exception with an appropriate \par
+      message. Users can have 3 login chances only. Use the clear \par
+     button to clear the TextFields.\par
+\par
+=>\par
+import java.awt.*;\par
+import java.awt.event.*;\par
+import javax.swing.*;\par
+class InvalidPasswordException extends Exception\par
+\{\}\par
+class Que5 extends JFrame implements ActionListener\par
+\{\par
+    JLabel name, pass;\par
+    JTextField nameText;\par
+    JPasswordField passText;\par
+    JButton login, end;\par
+    static int cnt=0;\par
+        Que5()\par
+    \{\par
+          name = new JLabel("Enter a Name : ");\par
+          pass = new JLabel("Enter a Password : ");\par
+          nameText = new JTextField(40);\par
+          passText = new JPasswordField(40);\par
+          login = new JButton("LOGIN");\par
+          end = new JButton("END");\par
+          login.addActionListener(this);\par
+          end.addActionListener(this);              \par
+          setLayout(new GridLayout(6,3));\par
+\tab\tab   \par
+          add(name);\par
+          add(nameText);\par
+          add(pass);\par
+          add(passText);\par
+          add(login);\par
+          add(end);\par
+          setTitle("LOGIN CHECK");\par
+          setSize(400,300);                              \par
+                        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\par
+                        setVisible(true);\par
+         \}\par
+     public void actionPerformed(ActionEvent AE)\par
+     \{\par
+               if(AE.getSource()==end)\par
+          \{\par
+                        System.exit(0);\par
+   \par
+          \}\par
+          if(AE.getSource()==login)\par
+          \{\par
+             try\par
+             \{\par
+                 String user = nameText.getText();\par
+                 String pass = new String(passText.getPassword());\par
+                                   if(user.compareTo(pass)==0)\par
+                 \{  JOptionPane.showMessageDialog(null,"LOGIN Successful","LOGIN",JOptionPane.INFORMATION_MESSAGE);\par
+                     System.exit(0);\par
+                  \}\par
+                  else\par
+                  \{\par
+                      throw new InvalidPasswordException();\par
+                  \}\par
+                \}\par
+                catch(Exception Ex)\par
+                \{\par
+                    cnt++;\par
+                    JOptionPane.showMessageDialog(null,"LOGIN Failed","LOGIN",JOptionPane.ERROR_MESSAGE);\par
+                     nameText.setText("");\par
+                     passText.setText("");\par
+                     nameText.requestFocus();\par
+                     if(cnt == 3)\par
+                    \{\par
+           JOptionPane.showMessageDialog(null,"3 Attempts Over","LOGIN",JOptionPane.ERROR_MESSAGE);\par
+                        System.exit(0);           \par
+                                                             \}\par
+                \}       \par
+         \}               \par
+   \}\par
+  public static void main(String args[])\par
+ \{\par
+                new Que5();\par
+ \}\par
+\}\par
+\par
+\b0\fs24\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+}
+ 
